@@ -44,14 +44,21 @@ public class EmployeeDAOMySqlImpl  implements IEmployeeDAO{
 		 pst.setString(3, e.getDesignation());
 		 pst.setInt(4,e.getDaysAttended());
 		 i = pst.executeUpdate();
-		 if(i>1) {
-			 System.out.println("Records added");
-		 }
+		
 		 }catch(SQLException e1) {
 			 System.out.println("UNABLE TO  exceute insert ");
 			 e1.printStackTrace();
+		 }   finally {
+			 try {
+				 pst.close();
+				 
+			 } catch(SQLException e2) {
+				 e2.printStackTrace();
+			 }
 		 }
-		 
+		 if(i>1) {
+			 System.out.println("Records added  ");
+		 }
 		
 	}
 
@@ -66,9 +73,7 @@ public class EmployeeDAOMySqlImpl  implements IEmployeeDAO{
 //		 pst.setString(3, e.getDesignation());
 //		 pst.setInt(4,e.getDaysAttended());
 		 i = pst.executeUpdate();
-		 if(i>1) {
-			 System.out.println("Records added");
-		 }
+		
 		 }catch(SQLException e1) {
 			 System.out.println("UNABLE TO  delete operation ");
 			 e1.printStackTrace();
@@ -79,6 +84,9 @@ public class EmployeeDAOMySqlImpl  implements IEmployeeDAO{
 			 } catch(SQLException e) {
 				 e.printStackTrace();
 			 }
+		 }
+		 if(i>1) {
+			 System.out.println("Records deleted");
 		 }
 		
 	}
@@ -94,9 +102,7 @@ public class EmployeeDAOMySqlImpl  implements IEmployeeDAO{
 		 pst.setString(2, e.getDesignation());
 		 pst.setInt(3,e.getDaysAttended());
 		 i = pst.executeUpdate();
-		 if(i>1) {
-			 System.out.println("Records added");
-		 }
+		 
 		 }catch(SQLException e1) {
 			 System.out.println("UPDATE  TO   Record Failed  ");
 			 e1.printStackTrace();
@@ -108,7 +114,9 @@ public class EmployeeDAOMySqlImpl  implements IEmployeeDAO{
 			 e1.printStackTrace();
 		 }
 		 }
-		
+		 if(i>1) {
+			 System.out.println("Records updated");
+		 }
 	}
 
 	@Override
@@ -130,7 +138,7 @@ public class EmployeeDAOMySqlImpl  implements IEmployeeDAO{
 			findTemp = new Employee();
 			findTemp.setEmpname(rs.getString("empname"));
 			findTemp.setDesignation(rs.getString("designation"));
-			findTemp.setDaysAttended(rs.getInt("dayattended"));
+			findTemp.setDaysAttended(rs.getInt("dayattende"));
 			findTemp.setEmpid(e.getEmpid());
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
