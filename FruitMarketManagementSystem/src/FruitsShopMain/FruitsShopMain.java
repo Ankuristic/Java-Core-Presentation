@@ -14,13 +14,13 @@ public class FruitsShopMain {
 		Scanner scn = new Scanner(System.in);
 		while(true)
 		{
-		System.out.println("Press 1 to add fruit");
-		System.out.println("Press 2 to delete the fruit");
-		System.out.println("Press 3 to fetch all the fruit");
-		System.out.println("Press 4 to update the fruit");
-		System.out.println("Press 5 to exit");
+		System.out.println("1 : CREATE fruit");
+		System.out.println("2 : delete the fruit");
+		System.out.println("3:  fetch all the fruit");
+		System.out.println("4:  UPDATE the fruit");
+		System.out.println("5: exit");
 		int c = Integer.parseInt(scn.next());
-		
+
 		if(c==1)
 		{
 			//add fruits
@@ -71,22 +71,23 @@ public class FruitsShopMain {
 			}
 			else if(c==4)
 			{
-				System.out.println("Enter fruit name : ");
-				String name =scn.next();
+			System.out.println("Enter fruitname : ");
+				String fruitname =scn.next();
 				
-				System.out.println("Enter fruit id : ");
-				Integer id = scn.nextInt();
-				Fruits fn1 = new Fruits();
-			boolean st =FruitsDAO.updateFruits(fn1);					
-				if(st) 
-				{
-				System.out.println("Fruits is successfully update...");
+				System.out.println("Enter fruitid : ");
+				int fruitid = scn.nextInt();
+//				Fruits fn1 = new Fruits();
+                FruitsDAO fruitsDAO = new FruitsDAO();
+			String result=	fruitsDAO.updateFruits(fruitid, fruitname);	
+			if(result != null) 
+			{
+			System.out.println("Fruits is successfully update...");
 			}else
 				{
 					System.out.println("something went wrong..");
 				}
 			
-				System.out.println(st);
+			System.out.println(result);
 				
 			} else if(c==5)
 			{

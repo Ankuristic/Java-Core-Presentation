@@ -111,30 +111,51 @@ public static void showAllFruits() {
 	
 }
 
-public static boolean updateFruits(Fruits f) {
-	boolean f1 = false;
+//public static boolean updateFruits(Fruits f) {
+//	boolean f1 = false;
+//	try {
+//		Connection con = FruitsShopJdbcConnection.createDatabase();
+//		String q="update fruit set fruitname= ? where fruitid= ?";
+//
+//
+//		PreparedStatement pst = con.prepareStatement(q);
+//		
+//		pst.setString(1, f.getFruitname());
+//		pst.setInt(2, f.getFruidid());
+//		pst.executeUpdate();
+//		
+//        f1=true;
+//		
+//		
+//	} catch(SQLException  e)
+//	{
+//		e.printStackTrace();
+//	}
+//	return f1;
+//		
+//
+//	}
+
+public String updateFruits(int fruitid , String fruitname) {
 	try {
 		Connection con = FruitsShopJdbcConnection.createDatabase();
-		String q="update fruit set fruitname= ? where fruitid= ?";
-
+		String q="update fruit SET fruitname= ? WHERE fruitid= ?";
 
 		PreparedStatement pst = con.prepareStatement(q);
+		pst.setString(1, fruitname);       
+		pst.setInt(2, fruitid);  
+		int rowsAffected = pst.executeUpdate();
+		System.out.println("Rows affected:"+ rowsAffected);
+		System.out.println("updated completed ");
 		
-		pst.setString(1, f.getFruitname());
-		pst.setInt(2, f.getFruidid());
-		pst.executeUpdate();
 		
-        f1=true;
+	} catch(Exception ex) {
+		ex.printStackTrace();
 		
-		
-	} catch(SQLException  e)
-	{
-		e.printStackTrace();
 	}
-	return f1;
-		
+	return fruitname;
 
-	}
+}
 
 }
 
